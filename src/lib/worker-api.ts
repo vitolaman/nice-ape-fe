@@ -1,7 +1,7 @@
 // API client for connecting Next.js frontend to Cloudflare Worker backend
 
 const getApiUrl = () => {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     return process.env.NEXT_PUBLIC_WORKER_API_URL_PRODUCTION;
   }
   return process.env.NEXT_PUBLIC_WORKER_API_URL;

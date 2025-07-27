@@ -27,23 +27,16 @@ export const Header = () => {
         .then((data: unknown) => {
           console.log('User authenticated:', data);
           const response = data as {
-            success: boolean;
-            data: {
-              user: { id: string; walletAddress: string; displayName?: string };
-              isNewUser: boolean;
-              message: string;
-            };
+            user: { id: string; walletAddress: string; displayName?: string };
+            isNewUser: boolean;
+            message: string;
           };
 
-          if (response.success && response.data.user.id) {
-            localStorage.setItem('userId', response.data.user.id);
-            localStorage.setItem('userWallet', response.data.user.walletAddress);
-            console.log(response.data.message);
-            if (response.data.isNewUser) {
-              console.log('Welcome! New user created.');
-            } else {
-              console.log('Welcome back!');
-            }
+          console.log(response);
+
+          if (response.user.id) {
+            localStorage.setItem('userId', response.user.id);
+            localStorage.setItem('userWallet', response.user.walletAddress);
           }
         })
         .catch((error) => {
