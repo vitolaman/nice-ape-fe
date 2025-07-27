@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { workerApi } from '@/lib/worker-api';
 import CampaignCard from '@/components/CampaignCard';
+import CampaignCardProfile from '@/components/CampaignCardProfile';
 
 type Campaign = {
   id: string;
@@ -292,7 +293,7 @@ export default function Profile() {
                         );
                         oauthUrl.searchParams.set(
                           'redirect_uri',
-                          'http://localhost:3000/twitter-handler'
+                          'https://nice-ape-web.vercel.app/twitter-handler'
                         );
                         oauthUrl.searchParams.set('scope', 'tweet.read users.read offline.access');
                         oauthUrl.searchParams.set('state', 'edit-profile');
@@ -391,7 +392,7 @@ export default function Profile() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
               {campaigns.map((campaign) => (
-                <CampaignCard
+                <CampaignCardProfile
                   key={campaign.id}
                   campaign={{
                     id: campaign.id,
@@ -403,9 +404,6 @@ export default function Profile() {
                       campaign.bannerUrl ||
                       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=200&fit=crop',
                     goal: campaign.campaignGoal || 0,
-                    raised: campaign.raisedValue || 0,
-                    trades24h: 0,
-                    volume24h: 0,
                     category: 'General',
                     tokenMint: campaign.tokenMint || '',
                     mcap: 0,

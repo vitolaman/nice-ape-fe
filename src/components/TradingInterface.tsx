@@ -39,7 +39,7 @@ const TradingInterface: React.FC<TradingInterfaceProps> = ({
   const estimatedCost = parseFloat(amount || '0') * currentPrice;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+    <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
       <div className="mb-6">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
           Trade {campaignSymbol} - {campaignName}

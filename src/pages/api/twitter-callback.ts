@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = await client.loginWithOAuth2({
       code,
       codeVerifier: verifier as string,
-      redirectUri: 'http://localhost:3000/twitter-handler',
+      redirectUri: 'https://nice-ape-web.vercel.app/twitter-handler',
     });
 
     const user = await loggedClient.v2.me();

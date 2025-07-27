@@ -5,6 +5,20 @@ import TradingInterface from '@/components/TradingInterface';
 import { useState, useEffect } from 'react';
 import TokenPriceChart from '@/components/PriceChart';
 
+export type UserResponse = {
+  id: string;
+  displayName: string;
+  bio: string | null;
+  walletAddress: string;
+  xHandle: string | null;
+  totalTrade: number;
+  volumeTrade: number;
+  charityImpact: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+};
+
 interface Campaign {
   id: string;
   name: string;
@@ -27,40 +41,8 @@ interface Campaign {
   transactionSignature: string;
   createdAt: string;
   updatedAt: string;
+  user: UserResponse;
 }
-
-const dummyData = [
-  { time: '2025-06-19', price: 1.02 },
-  { time: '2025-06-20', price: 1.08 },
-  { time: '2025-06-21', price: 1.12 },
-  { time: '2025-06-22', price: 1.1 },
-  { time: '2025-06-23', price: 1.09 },
-  { time: '2025-06-24', price: 1.13 },
-  { time: '2025-06-25', price: 1.15 },
-  { time: '2025-06-26', price: 1.17 },
-  { time: '2025-06-27', price: 1.14 },
-  { time: '2025-06-28', price: 1.18 },
-  { time: '2025-06-29', price: 1.22 },
-  { time: '2025-06-30', price: 1.24 },
-  { time: '2025-07-01', price: 1.26 },
-  { time: '2025-07-02', price: 1.21 },
-  { time: '2025-07-03', price: 1.19 },
-  { time: '2025-07-04', price: 1.25 },
-  { time: '2025-07-05', price: 1.27 },
-  { time: '2025-07-06', price: 1.3 },
-  { time: '2025-07-07', price: 1.33 },
-  { time: '2025-07-08', price: 1.35 },
-  { time: '2025-07-09', price: 1.38 },
-  { time: '2025-07-10', price: 1.42 },
-  { time: '2025-07-11', price: 1.4 },
-  { time: '2025-07-12', price: 1.37 },
-  { time: '2025-07-13', price: 1.39 },
-  { time: '2025-07-14', price: 1.41 },
-  { time: '2025-07-15', price: 1.45 },
-  { time: '2025-07-16', price: 1.48 },
-  { time: '2025-07-17', price: 1.5 },
-  { time: '2025-07-18', price: 1.52 },
-];
 
 export default function CampaignPage() {
   const router = useRouter();
@@ -243,7 +225,43 @@ export default function CampaignPage() {
               </div>
 
               {/* Trading Interface */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 mb-16">
+                <div className="lg:col-span-1">
+                  <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                      Creator
+                    </h2>
+
+                    <div className="flex items-center gap-4 mb-6">
+                      <div>
+                        <p className="text-gray-700 dark:text-gray-300 text-sm">
+                          <span className="font-semibold">Name:</span> {campaign.user.displayName}
+                        </p>
+                        {campaign.user.xHandle && (
+                          <p className="text-gray-700 dark:text-gray-300 text-sm">
+                            <span className="font-semibold">Twitter:</span>{' '}
+                            <a
+                              href={`https://x.com/${campaign.user.xHandle}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 dark:text-blue-400 hover:underline"
+                            >
+                              @{campaign.user.xHandle}
+                            </a>
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {campaign.user.bio && (
+                      <div className="text-gray-700 dark:text-gray-300 text-sm">
+                        <p className="font-semibold mb-1">About:</p>
+                        <p className="leading-relaxed">{campaign.user.bio}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 <TradingInterface
                   campaignToken={campaign.tokenMint}
                   campaignSymbol={campaign.tokenTicker}
