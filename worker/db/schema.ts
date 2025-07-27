@@ -9,6 +9,7 @@ export const users = sqliteTable('users', {
   bio: text('bio'),
   walletAddress: text('wallet_address'),
   xHandle: text('x_handle'),
+  avatarUrl: text('avatar_url'),
   totalTrade: integer('total_trade'),
   volumeTrade: integer('volume_trade'),
   charityImpact: integer('charity_impact'),

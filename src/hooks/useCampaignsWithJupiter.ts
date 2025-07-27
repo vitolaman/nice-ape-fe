@@ -32,6 +32,8 @@ interface CampaignWithJupiterData {
     priceChange24h?: number;
     liquidity?: number;
     mcap?: number;
+    percentage?: number;
+    raisedValue?: number;
   };
 }
 

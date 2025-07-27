@@ -79,8 +79,6 @@ export default function Profile() {
             message: string;
           };
 
-          console.log(response);
-
           setUserProfile({
             displayName: response.user.displayName || '',
             xHandle: response.user.xHandle || '',
@@ -92,12 +90,6 @@ export default function Profile() {
           if (response.success && response.user.id) {
             localStorage.setItem('userId', response.user.id);
             localStorage.setItem('userWallet', response.user.walletAddress);
-            console.log(response.message);
-            if (response.isNewUser) {
-              console.log('Welcome! New user created.');
-            } else {
-              console.log('Welcome back!');
-            }
           }
         })
         .catch((error) => {
@@ -145,11 +137,8 @@ export default function Profile() {
         });
 
         if (!res.ok) throw new Error('Twitter login failed');
-        console.log(res);
         const data: any = await res.json();
-        console.log('Twitter User:', data.user.data.username);
 
-        // Optional: Set formData.x_handle = data.user.username
         setUserProfile((prev) => ({
           ...prev,
           x_handle: `@${data.user.data.username}`,
@@ -157,8 +146,9 @@ export default function Profile() {
 
         const userId = localStorage.getItem('userId') || '';
 
-        const result = await workerApi.updateUser('969b616a-90c6-4a28-878f-3979602ae167', {
+        await workerApi.updateUser(userId, {
           xHandle: `@${data.user.data.username}`,
+          avatarUrl: `${data.user.data.profile_image_url}`,
         });
 
         toast.success(`Connected to @${data.user.data.username}`);
@@ -170,34 +160,13 @@ export default function Profile() {
     fetchTwitterProfile();
   }, []);
 
-  // const [achievements] = useState([
-  //   { id: 1, name: 'NiceApe Hero', description: 'Traded over $1000', icon: '🦍', earned: true },
-  //   { id: 2, name: 'First Trade', description: 'Completed first trade', icon: '🎯', earned: true },
-  //   {
-  //     id: 3,
-  //     name: 'Generous Ape',
-  //     description: 'Generated $50+ in charity fees',
-  //     icon: '💚',
-  //     earned: true,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'Community Leader',
-  //     description: 'Launched a campaign',
-  //     icon: '⭐',
-  //     earned: false,
-  //   },
-  // ]);
-
-  // const [recentActivity] = useState([
-  //   { action: 'Bought WATER', amount: '$50', donated: '+$0.25 donated', time: '2 hours ago' },
-  //   { action: 'Sold FOOD', amount: '$75', donated: '+$0.38 donated', time: '1 day ago' },
-  //   { action: 'Bought TREE', amount: '$100', donated: '+$0.50 donated', time: '3 days ago' },
-  // ]);
-
-  const handleSaveProfile = () => {
+  const handleSaveProfile = async () => {
+    const userId = localStorage.getItem('userId') || '';
     setIsEditing(false);
-    // In real app, save to backend
+    await workerApi.updateUser(userId, {
+      bio: userProfile.bio,
+      displayName: userProfile.displayName,
+    });
   };
 
   const handleDisconnectWallet = async () => {
@@ -310,7 +279,7 @@ export default function Profile() {
                     <label
                       className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                     >
-                      Bio
+                      About
                     </label>
                     <textarea
                       value={userProfile.bio}
@@ -413,75 +382,6 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Achievements */}
-          {/* <div
-            className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-yellow-500">⭐</span>
-              <h3 className="text-xl font-bold">Achievements</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {achievements.map((achievement) => (
-                <div
-                  key={achievement.id}
-                  className={`p-4 rounded-lg border-2 transition-all ${
-                    achievement.earned
-                      ? isDarkMode
-                        ? 'border-green-600 bg-green-900/20'
-                        : 'border-green-200 bg-green-50'
-                      : isDarkMode
-                        ? 'border-gray-600 bg-gray-700/50'
-                        : 'border-gray-200 bg-gray-50'
-                  }`}
-                >
-                  <div className="text-center">
-                    <div className="text-3xl mb-2">{achievement.icon}</div>
-                    <h4 className="font-bold mb-1">{achievement.name}</h4>
-                    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} mb-3`}>
-                      {achievement.description}
-                    </p>
-                    {achievement.earned && (
-                      <span className="inline-block px-3 py-1 bg-green-600 text-white text-xs rounded-full font-medium">
-                        Earned
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-          {/* Recent Activity */}
-          {/* <div
-            className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-blue-500">📈</span>
-              <h3 className="text-xl font-bold">Recent Activity</h3>
-            </div>
-            <div className="space-y-3">
-              {recentActivity.map((activity, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center justify-between p-3 rounded-lg ${
-                    isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
-                  }`}
-                >
-                  <div>
-                    <div className="font-medium">{activity.action}</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {activity.time}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold">{activity.amount}</div>
-                    <div className="text-sm text-green-500">{activity.donated}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-          {/* Settings */}
           <div
             className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
           >

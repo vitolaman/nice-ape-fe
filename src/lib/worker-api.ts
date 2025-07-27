@@ -89,7 +89,13 @@ class WorkerApiClient {
 
   async updateUser(
     id: string,
-    updateData: { username?: string; email?: string; xHandle?: string }
+    updateData: {
+      displayName?: string;
+      email?: string;
+      xHandle?: string;
+      bio?: string;
+      avatarUrl?: string;
+    }
   ) {
     return this.request(`/api/users/${id}`, {
       method: 'PUT',

@@ -10,12 +10,18 @@ import {
   excludeDeleted,
   activeWithCondition,
 } from '../lib/timestamps';
+import { Connection, PublicKey } from '@solana/web3.js';
+import { DynamicBondingCurveClient } from '@meteora-ag/dynamic-bonding-curve-sdk';
+import { JupiterPoolsResponse } from './campaigns-with-jupiter';
+import { interval } from 'drizzle-orm/pg-core';
 
 export class CampaignService {
   private db;
+  private env: Env;
 
   constructor(env: Env) {
     this.db = createDb(env.DB);
+    this.env = env;
   }
 
   async createCampaign(campaignData: {
@@ -62,9 +68,33 @@ export class CampaignService {
       .where(activeWithCondition(users.deletedAt, eq(users.id, campaign[0].userId)))
       .limit(1);
 
+    const RPC_URL = this.env.RPC_URL;
+    const NETWORK = this.env.NEXT_PUBLIC_NETWORK || 'mainnet';
+    const POOL_CONFIG_KEY =
+      NETWORK === 'devnet'
+        ? this.env.NEXT_PUBLIC_DEVNET_POOL_CONFIG_KEY
+        : this.env.NEXT_PUBLIC_MAINNET_POOL_CONFIG_KEY;
+
+    if (!RPC_URL || !POOL_CONFIG_KEY) {
+      throw new Error('Missing required blockchain environment variables');
+    }
+
+    const connection = new Connection(RPC_URL, 'confirmed');
+    const client = new DynamicBondingCurveClient(connection, 'confirmed');
+    const fees = await client.state.getPoolByBaseMint(campaign[0].tokenMint);
+    const metrics = await client.state.getPoolFeeMetrics(fees?.publicKey as PublicKey);
+    const bn1 = metrics.total.totalTradingBaseFee;
+    const bn2 = metrics.total.totalTradingQuoteFee;
+    const intValue = bn1.toNumber();
+    const intValue2 = bn2.toNumber();
+    const totalFees = intValue + intValue2 / 1_000_000;
+    const percentage = (totalFees / campaign[0]?.campaignGoal) * 100;
+
     return {
       ...mapCampaignToResponse(campaign[0]),
       user: user[0] ?? null,
+      percentage: percentage,
+      raisedValue: totalFees,
     };
   }
 

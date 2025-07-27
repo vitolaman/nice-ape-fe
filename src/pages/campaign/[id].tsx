@@ -4,10 +4,12 @@ import Page from '@/components/ui/Page/Page';
 import TradingInterface from '@/components/TradingInterface';
 import { useState, useEffect } from 'react';
 import TokenPriceChart from '@/components/PriceChart';
+import { getApiUrl } from '@/lib/worker-api';
 
 export type UserResponse = {
   id: string;
   displayName: string;
+  avatarUrl: string;
   bio: string | null;
   walletAddress: string;
   xHandle: string | null;
@@ -41,6 +43,7 @@ interface Campaign {
   transactionSignature: string;
   createdAt: string;
   updatedAt: string;
+  percentage: string;
   user: UserResponse;
 }
 
@@ -54,7 +57,8 @@ export default function CampaignPage() {
 
     const fetchCampaign = async () => {
       try {
-        const res = await fetch(`http://localhost:8787/api/campaigns/${id}`);
+        const workerUrl = getApiUrl() || 'http://localhost:8787';
+        const res = await fetch(`${workerUrl}/api/campaigns/${id}`);
         const data: Campaign = await res.json();
         setCampaign(data);
       } catch (error) {
@@ -233,11 +237,16 @@ export default function CampaignPage() {
                     </h2>
 
                     <div className="flex items-center gap-4 mb-6">
+                      <img
+                        src={campaign.user?.avatarUrl || 'https://via.placeholder.com/80'}
+                        alt={campaign.user?.displayName}
+                        className="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-600"
+                      />
                       <div>
                         <p className="text-gray-700 dark:text-gray-300 text-sm">
                           <span className="font-semibold">Name:</span> {campaign.user.displayName}
                         </p>
-                        {campaign.user.xHandle && (
+                        {campaign.user?.xHandle && (
                           <p className="text-gray-700 dark:text-gray-300 text-sm">
                             <span className="font-semibold">Twitter:</span>{' '}
                             <a
@@ -246,7 +255,7 @@ export default function CampaignPage() {
                               rel="noopener noreferrer"
                               className="text-blue-600 dark:text-blue-400 hover:underline"
                             >
-                              @{campaign.user.xHandle}
+                              {campaign.user.xHandle}
                             </a>
                           </p>
                         )}

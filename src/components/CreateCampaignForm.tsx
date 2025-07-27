@@ -402,10 +402,7 @@ const CreateCampaignForm = () => {
 
                         const oauthUrl = new URL('https://twitter.com/i/oauth2/authorize');
                         oauthUrl.searchParams.set('response_type', 'code');
-                        oauthUrl.searchParams.set(
-                          'client_id',
-                          'NEVOM3hRNmRiaU5Cb3BnRm9aWG86MTpjaQ'
-                        );
+                        oauthUrl.searchParams.set('client_id', process.env.TWITTER_CLIENT_ID || '');
                         oauthUrl.searchParams.set(
                           'redirect_uri',
                           'https://nice-ape-web.vercel.app/twitter-handler'

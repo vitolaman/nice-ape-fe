@@ -9,10 +9,6 @@ const client = new TwitterApi({
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { code, verifier } = req.body;
-
-  console.log('Received code:', code);
-  console.log('Received verifier:', verifier);
-  console.log(req.body);
   if (!verifier || typeof code !== 'string')
     return res.status(400).json({ error: 'Missing verifier or code' });
 
@@ -25,10 +21,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = await client.loginWithOAuth2({
       code,
       codeVerifier: verifier as string,
-      redirectUri: 'https://nice-ape-web.vercel.app/twitter-handler',
+      redirectUri: `${process.env.NEXT_BASE_URL}/twitter-handler`,
     });
 
-    const user = await loggedClient.v2.me();
+    const user = await loggedClient.v2.me({
+      'user.fields': ['profile_image_url'],
+    });
     return res.status(200).json({ user, accessToken });
   } catch (err) {
     return res.status(500).json({ error: (err as Error).message });

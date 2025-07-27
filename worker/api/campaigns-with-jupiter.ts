@@ -4,6 +4,8 @@ import { eq, and, desc } from 'drizzle-orm';
 import { Env } from '../types';
 import { mapCampaignToResponse } from '../lib/field-mapping';
 import { excludeDeleted } from '../lib/timestamps';
+import { Connection, PublicKey } from '@solana/web3.js';
+import { DynamicBondingCurveClient } from '@meteora-ag/dynamic-bonding-curve-sdk';
 
 const CampaignStatus = {
   DRAFTED: 'DRAFTED',
@@ -112,6 +114,8 @@ export interface CampaignWithJupiterData {
     priceChange24h?: number;
     liquidity?: number;
     mcap?: number;
+    percentage?: number;
+    raisedValue?: number;
   };
 }
 
@@ -125,6 +129,8 @@ export class CampaignJupiterService {
   }
 
   async getCampaignsWithJupiterData(): Promise<CampaignWithJupiterData[]> {
+    const RPC_URL = this.env.RPC_URL;
+
     const campaignResults = await this.db
       .select({
         campaign: campaigns,
@@ -156,29 +162,47 @@ export class CampaignJupiterService {
       }
     }
 
-    const campaignsWithJupiter: CampaignWithJupiterData[] = campaignResults
-      .filter((result) => result.campaign.tokenMint && poolMap.has(result.campaign.tokenMint))
-      .map((result) => {
-        const campaign = result.campaign;
-        const mappedCampaign = mapCampaignToResponse(campaign);
-        const pool = poolMap.get(campaign.tokenMint!);
-        let jupiterDataObj: CampaignWithJupiterData['jupiterData'] = undefined;
-        if (pool) {
-          jupiterDataObj = {
-            volume24h: pool.volume24h ?? pool.baseAsset.stats24h?.buyVolume ?? 0,
-            trades:
-              (pool.baseAsset.stats24h?.numBuys || 0) + (pool.baseAsset.stats24h?.numSells || 0),
-            priceChange24h: pool.baseAsset.stats24h?.priceChange,
-            liquidity: pool.liquidity,
-            mcap: pool.baseAsset.mcap,
+    const campaignsWithJupiter: CampaignWithJupiterData[] = await Promise.all(
+      campaignResults
+        .filter((result) => result.campaign.tokenMint && poolMap.has(result.campaign.tokenMint))
+        .map(async (result) => {
+          const connection = new Connection(RPC_URL, 'confirmed');
+          const client = new DynamicBondingCurveClient(connection, 'confirmed');
+          const fees = await client.state.getPoolByBaseMint(result.campaign.tokenMint);
+          const metrics = await client.state.getPoolFeeMetrics(fees?.publicKey as PublicKey);
+          const bn1 = metrics.total.totalTradingBaseFee;
+          const bn2 = metrics.total.totalTradingQuoteFee;
+          const intValue = bn1.toNumber();
+          const intValue2 = bn2.toNumber();
+          const totalFees = intValue + intValue2 / 1_000_000;
+          const percentage = parseFloat(
+            ((totalFees / result.campaign.campaignGoal) * 100).toFixed(2)
+          );
+
+          const campaign = result.campaign;
+          const mappedCampaign = mapCampaignToResponse(campaign);
+          const pool = poolMap.get(campaign.tokenMint!);
+          let jupiterDataObj: CampaignWithJupiterData['jupiterData'] = undefined;
+          if (pool) {
+            jupiterDataObj = {
+              volume24h: pool.volume24h ?? pool.baseAsset.stats24h?.buyVolume ?? 0,
+              trades:
+                (pool.baseAsset.stats24h?.numBuys || 0) + (pool.baseAsset.stats24h?.numSells || 0),
+              priceChange24h: pool.baseAsset.stats24h?.priceChange,
+              liquidity: pool.liquidity,
+              mcap: pool.baseAsset.mcap,
+              percentage: percentage,
+              raisedValue: totalFees,
+            };
+          }
+
+          return {
+            ...mappedCampaign,
+            categoryName: result.categoryName,
+            jupiterData: jupiterDataObj,
           };
-        }
-        return {
-          ...mappedCampaign,
-          categoryName: result.categoryName,
-          jupiterData: jupiterDataObj,
-        };
-      });
+        })
+    );
 
     return campaignsWithJupiter;
   }

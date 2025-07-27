@@ -45,6 +45,7 @@ export function mapUserToResponse(user: User): any {
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     deletedAt: user.deletedAt,
+    avatarUrl: user.avatarUrl || '',
   };
 }
 
