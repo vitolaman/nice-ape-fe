@@ -26,9 +26,9 @@ const Hero = () => {
       <div className="relative max-w-5xl mx-auto px-4 py-16 sm:py-20 text-center z-10">
         {/* Responsive Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-          Trade Tokens, <br />
+          Ape Tokens, <br />
           <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-            Fund World-Changing Causes.
+            Fund people in needs.
           </span>
         </h1>
         {/* Responsive Paragraph */}
