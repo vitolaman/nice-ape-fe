@@ -405,7 +405,7 @@ const CreateCampaignForm = () => {
                         oauthUrl.searchParams.set('client_id', process.env.TWITTER_CLIENT_ID || '');
                         oauthUrl.searchParams.set(
                           'redirect_uri',
-                          'https://nice-ape-web.vercel.app/twitter-handler'
+                          'https://www.niceape.app//twitter-handler'
                         );
                         oauthUrl.searchParams.set('scope', 'tweet.read users.read offline.access');
                         oauthUrl.searchParams.set('state', 'create-campaign');

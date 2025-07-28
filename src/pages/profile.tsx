@@ -262,7 +262,7 @@ export default function Profile() {
                         );
                         oauthUrl.searchParams.set(
                           'redirect_uri',
-                          'https://nice-ape-web.vercel.app/twitter-handler'
+                          'https://www.niceape.app//twitter-handler'
                         );
                         oauthUrl.searchParams.set('scope', 'tweet.read users.read offline.access');
                         oauthUrl.searchParams.set('state', 'edit-profile');
