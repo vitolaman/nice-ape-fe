@@ -89,9 +89,7 @@ export default function Help() {
                     Can&apos;t find what you&apos;re looking for? Reach out to our support team:
                   </p>
                   <div className="space-y-2 text-gray-600 dark:text-gray-400">
-                    <p>📧 Email: support@niceape.com</p>
-                    <p>💬 Discord: discord.gg/niceape</p>
-                    <p>🐦 Twitter: @NiceApeDeFi</p>
+                    <p>🐦 Twitter: @NiceApeApp</p>
                   </div>
                 </div>
               </div>

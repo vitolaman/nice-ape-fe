@@ -21,9 +21,7 @@ const TradingInterface: React.FC<TradingInterfaceProps> = ({
   const [tradeType, setTradeType] = useState<'buy' | 'sell'>('buy');
 
   const handleOpenTrade = () => {
-    const tradeUrl = new URL(
-      `https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=${campaignToken}`
-    );
+    const tradeUrl = new URL(`https://jup.ag/tokens/${campaignToken}`);
     window.open(tradeUrl.toString(), '_blank');
     setIsModalOpen(false);
   };
@@ -32,12 +30,6 @@ const TradingInterface: React.FC<TradingInterfaceProps> = ({
 
   return (
     <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
-      <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-          Trade {campaignSymbol} - {campaignName}
-        </h3>
-      </div>
-
       {/* Trigger Modal Button */}
       <Button
         className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1 rounded-lg text-lg"

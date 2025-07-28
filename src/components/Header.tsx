@@ -8,10 +8,9 @@ import { workerApi } from '@/lib/worker-api';
 
 export const Header = () => {
   const { setShowModal } = useUnifiedWalletContext();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const { disconnect, publicKey } = useWallet();
   const address = useMemo(() => publicKey?.toBase58(), [publicKey]);
@@ -75,78 +74,93 @@ export const Header = () => {
           </div>
         </Link>
 
-        {/* Wallet Connection */}
-        {address ? (
-          <div className="flex items-center gap-3 relative" ref={dropdownRef}>
-            {' '}
-            {/* Online Indicator */}
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-green-400 dark:text-green-300 font-medium">
-                {shortenAddress(address)}
-              </span>
-            </div>
-            {/* Profile Icon Button */}
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-lg transition-colors"
-            >
-              <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-              </svg>
-            </button>
-            {/* Dropdown Menu */}
-            {isDropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
-                <Link
-                  href="/profile"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="/about"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  href="/help"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  Help
-                </Link>
-                <Link
-                  href="/terms"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  Terms
-                </Link>
-                <div className="border-t dark:border-gray-700 my-1"></div>
-                <button
-                  onClick={() => {
-                    disconnect();
-                    setIsDropdownOpen(false);
-                  }}
-                  className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  Disconnect Wallet
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
-          <Button
-            onClick={handleConnectWallet}
-            className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium px-4 py-2 rounded-lg"
+        <div className="flex gap-4 items-center">
+          <button
+            onClick={toggleDarkMode}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+              isDarkMode ? 'bg-green-600' : 'bg-gray-300'
+            }`}
           >
-            Connect Wallet
-          </Button>
-        )}
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                isDarkMode ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            />
+          </button>
+
+          {/* Wallet Connection */}
+          {address ? (
+            <div className="flex items-center gap-3 relative" ref={dropdownRef}>
+              {' '}
+              {/* Online Indicator */}
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-green-400 dark:text-green-300 font-medium">
+                  {shortenAddress(address)}
+                </span>
+              </div>
+              {/* Profile Icon Button */}
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+              </button>
+              {/* Dropdown Menu */}
+              {isDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href="/help"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Help
+                  </Link>
+                  <Link
+                    href="/terms"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Terms
+                  </Link>
+                  <div className="border-t dark:border-gray-700 my-1"></div>
+                  <button
+                    onClick={() => {
+                      disconnect();
+                      setIsDropdownOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    Disconnect Wallet
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Button
+              onClick={handleConnectWallet}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium px-4 py-2 rounded-lg"
+            >
+              Connect Wallet
+            </Button>
+          )}
+        </div>
       </div>
     </header>
   );

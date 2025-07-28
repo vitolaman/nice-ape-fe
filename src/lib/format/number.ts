@@ -134,6 +134,8 @@ type FormatReadableNumberOptions = {
    */
   subscript?: boolean;
   format?: ReadableNumberFormat;
+  minimumFractionDigits?: number;
+  maximumFractionDigits?: number;
 };
 
 function getReadableNumberFormatter(
@@ -169,7 +171,15 @@ export function formatReadableNumber(
   }
 
   const abs = Math.abs(num);
-  let formatted = getReadableNumberFormatter(abs, options).format(num);
+
+  // Always force 2 digits after the decimal point
+  const formatter = getReadableNumberFormatter(abs, {
+    ...options,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  let formatted = formatter.format(num);
 
   if (abs < 0.001 && abs !== 0 && options.subscript !== false) {
     const zeroes = countInsignificantFractionalZeroes(abs);
@@ -187,6 +197,7 @@ export function formatReadableNumber(
       formatted = options.prefix + formatted;
     }
   }
+
   if (options.suffix) {
     formatted = formatted + options.suffix;
   }
