@@ -28,7 +28,7 @@ const Hero = () => {
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
           Ape Tokens, <br />
           <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-            Fund people in needs.
+            Fund people in need.
           </span>
         </h1>
         {/* Responsive Paragraph */}
