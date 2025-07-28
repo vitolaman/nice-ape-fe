@@ -37,3 +37,6 @@ database_name = "nice-ape-prod"
 database_id = "your-prod-database-id-here"
 migrations_dir = "worker/db/migrations"
 preview_database_id = "your-prod-database-id-here"
+
+[limits]
+cpu_ms = 300_000

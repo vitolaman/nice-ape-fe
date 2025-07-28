@@ -26,14 +26,13 @@ interface CampaignWithJupiterData {
   createdAt: string | null;
   updatedAt: string | null;
   deletedAt: string | null;
+  percentage?: number;
   jupiterData?: {
     volume24h: number;
     trades: number;
     priceChange24h?: number;
     liquidity?: number;
     mcap?: number;
-    percentage?: number;
-    raisedValue?: number;
   };
 }
 

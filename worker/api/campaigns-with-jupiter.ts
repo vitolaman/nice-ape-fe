@@ -108,14 +108,13 @@ export interface CampaignWithJupiterData {
   telegramHandle: string | null;
   status: string | null;
   tokenMint: string | null;
+  percentage?: number;
   jupiterData?: {
     volume24h: number;
     trades: number;
     priceChange24h?: number;
     liquidity?: number;
     mcap?: number;
-    percentage?: number;
-    raisedValue?: number;
   };
 }
 
@@ -164,7 +163,7 @@ export class CampaignJupiterService {
 
     const campaignsWithJupiter: CampaignWithJupiterData[] = await Promise.all(
       campaignResults
-        .filter((result) => result.campaign.tokenMint && poolMap.has(result.campaign.tokenMint))
+        .filter((result) => result.campaign.tokenMint)
         .map(async (result) => {
           const connection = new Connection(RPC_URL, 'confirmed');
           const client = new DynamicBondingCurveClient(connection, 'confirmed');
@@ -191,8 +190,6 @@ export class CampaignJupiterService {
               priceChange24h: pool.baseAsset.stats24h?.priceChange,
               liquidity: pool.liquidity,
               mcap: pool.baseAsset.mcap,
-              percentage: percentage,
-              raisedValue: totalFees,
             };
           }
 
@@ -200,9 +197,12 @@ export class CampaignJupiterService {
             ...mappedCampaign,
             categoryName: result.categoryName,
             jupiterData: jupiterDataObj,
+            percentage: percentage,
+            raisedValue: totalFees,
           };
         })
     );
+    console.log(campaignsWithJupiter);
 
     return campaignsWithJupiter;
   }
