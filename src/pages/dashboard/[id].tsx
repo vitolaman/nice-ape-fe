@@ -21,6 +21,8 @@ interface Campaign {
   raisedValue: number;
   bondingCurve: number;
   poolsData?: string;
+  tokenMint: string;
+  transactionSignature?: string;
 }
 
 export default function CampaignPage() {
@@ -296,7 +298,7 @@ export default function CampaignPage() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
                     Campaign Details
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-4 mt-8">
                     <p>
                       <strong>Name:</strong> {campaign.name}
                     </p>
@@ -333,6 +335,38 @@ export default function CampaignPage() {
                       {formatCurrency(campaign.raisedValue)} raised
                     </div>
                   </div>
+
+                  <div className="space-y-2 text-sm my-8">
+                    {campaign?.tokenMint && (
+                      <div>
+                        <span className="font-medium text-gray-700 dark:text-gray-300">
+                          Token Mint:{' '}
+                        </span>
+                        <a
+                          href={`https://solscan.io/token/${campaign.tokenMint}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-green-600 dark:text-green-400 break-all"
+                        >
+                          {campaign.tokenMint}
+                        </a>
+                      </div>
+                    )}
+                    {campaign.transactionSignature && (
+                      <div>
+                        <span className="font-medium text-gray-700 dark:text-gray-300">
+                          Transaction:{' '}
+                        </span>
+                        <a
+                          href={`https://solscan.io/tx/${campaign.transactionSignature}`}
+                          className="font-mono text-blue-600 dark:text-blue-400 break-all"
+                        >
+                          {campaign.transactionSignature}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="my-6">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -349,6 +383,7 @@ export default function CampaignPage() {
                       ></div>
                     </div>
                   </div>
+
                   <div className="flex gap-8">
                     <div className="w-full">
                       <button
