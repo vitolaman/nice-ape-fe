@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { TwitterApi } from 'twitter-api-v2';
 
 const client = new TwitterApi({
-  clientId: process.env.TWITTER_CLIENT_ID!,
-  clientSecret: process.env.TWITTER_CLIENT_SECRET!,
+  clientId: 'NEVOM3hRNmRiaU5Cb3BnRm9aWG86MTpjaQ'!,
+  clientSecret: 'ntfxSJvFstZF4B_YnJDn85M9dfLq3eDsXR7f6587JkAYUTtkR0'!,
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
