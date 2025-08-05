@@ -81,7 +81,6 @@ export class CreateCampaignService {
     const { blockhash } = await connection.getLatestBlockhash();
     poolTx.feePayer = new PublicKey(userWallet);
     poolTx.recentBlockhash = blockhash;
-
     return poolTx;
   }
 

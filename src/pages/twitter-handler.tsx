@@ -9,8 +9,6 @@ export default function Terms() {
     const code = params.get('code');
     const state = params.get('state');
 
-    console.log('Twitter Callback Params:', { code, state });
-
     if (!code) return;
 
     if (state === 'edit-profile') {

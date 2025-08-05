@@ -65,7 +65,6 @@ export default function Profile() {
       workerApi
         .userAuth(address)
         .then((data: unknown) => {
-          console.log('User authenticated:', data);
           const response = data as {
             success: boolean;
             user: {
@@ -349,79 +348,6 @@ export default function Profile() {
               </div>
             </div>
           )}
-
-          {/* Campaign List */}
-
-          <div
-            className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <h3 className="text-xl font-bold">Campaign</h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-              {campaigns.map((campaign) => (
-                <CampaignCardProfile
-                  key={campaign.id}
-                  campaign={{
-                    id: campaign.id,
-                    name: campaign.name || 'Untitled Campaign',
-                    symbol: campaign.tokenTicker || 'N/A',
-                    description: campaign.shortDescription || 'No description available',
-                    image:
-                      campaign.imageUrl ||
-                      campaign.bannerUrl ||
-                      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=200&fit=crop',
-                    goal: campaign.campaignGoal || 0,
-                    category: 'General',
-                    tokenMint: campaign.tokenMint || '',
-                    mcap: 0,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div
-            className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-gray-500">⚙️</span>
-              <h3 className="text-xl font-bold">Settings</h3>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-medium">Dark Mode</h4>
-                  <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Switch to dark theme
-                  </p>
-                </div>
-                <button
-                  onClick={toggleDarkMode}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    isDarkMode ? 'bg-green-600' : 'bg-gray-300'
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      isDarkMode ? 'translate-x-6' : 'translate-x-1'
-                    }`}
-                  />
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <button
-                onClick={handleDisconnectWallet}
-                className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
-              >
-                Disconnect Wallet
-              </button>
-            </div>
-          </div>
         </div>
       </Page>
     </>

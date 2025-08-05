@@ -46,6 +46,7 @@ export interface JupiterPoolBaseAsset {
     id: string;
     createdAt: string;
   };
+  graduatedPool?: string;
   holderCount?: number;
   audit?: {
     mintAuthorityDisabled?: boolean;

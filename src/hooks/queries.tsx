@@ -22,6 +22,17 @@ export function useTokenInfo<T = QueryData<typeof ApeQueries.tokenInfo>>(
   });
 }
 
+export function useTokenInfoCampaign<T = QueryData<typeof ApeQueries.tokenInfo>>(
+  tokenId: string,
+  select?: (data: QueryData<typeof ApeQueries.tokenInfo>) => T
+) {
+  return useQuery({
+    ...ApeQueries.tokenInfo({ id: tokenId }),
+    refetchInterval: 60 * 1000,
+    select,
+  });
+}
+
 export function usePoolMinimalTokenInfo() {
   const tokenId = useTokenAddress();
   return useQuery({

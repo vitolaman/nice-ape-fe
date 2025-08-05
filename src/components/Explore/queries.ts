@@ -63,6 +63,7 @@ export const ApeQueries = {
       queryKey: ['explore', 'token', args.id, 'info'],
       queryFn: async () => {
         const info = await ApeClient.getToken({ id: args.id });
+        console.log('Token info:', args.id, info);
         if (!info?.pools[0]) {
           throw new Error('No token info found');
         }

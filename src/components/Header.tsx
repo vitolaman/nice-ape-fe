@@ -112,6 +112,13 @@ export const Header = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
                   <Link
+                    href="/dashboard"
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
                     href="/profile"
                     className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     onClick={() => setIsDropdownOpen(false)}

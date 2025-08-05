@@ -11,9 +11,12 @@ import {
   activeWithCondition,
 } from '../lib/timestamps';
 import { Connection, PublicKey } from '@solana/web3.js';
-import { DynamicBondingCurveClient } from '@meteora-ag/dynamic-bonding-curve-sdk';
+import {
+  deriveDammV2PoolAddress,
+  deriveDbcPoolAddress,
+  DynamicBondingCurveClient,
+} from '@meteora-ag/dynamic-bonding-curve-sdk';
 import { JupiterPoolsResponse } from './campaigns-with-jupiter';
-import { interval } from 'drizzle-orm/pg-core';
 
 export class CampaignService {
   private db;
@@ -82,6 +85,22 @@ export class CampaignService {
     const connection = new Connection(RPC_URL, 'confirmed');
     const client = new DynamicBondingCurveClient(connection, 'confirmed');
     const fees = await client.state.getPoolByBaseMint(campaign[0].tokenMint);
+    const dbcPoolAddress = deriveDbcPoolAddress(
+      new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'),
+      new PublicKey(campaign[0].tokenMint),
+      new PublicKey('54zgFqnvtLAaFssPTYha3NNRuB88RaVKQjtTG4fVHKC3')
+    );
+
+    const url = `https://datapi.jup.ag/v1/pools?assetIds=${campaign[0].tokenMint}`;
+    let poolsData;
+    let bondingCurve = 100;
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = (await response.json()) as JupiterPoolsResponse;
+      bondingCurve = data?.pools[0]?.bondingCurve as number;
+      poolsData = data?.pools[0]?.baseAsset?.graduatedPool || '';
+    }
+    // console.log('progress:', progress.toString());
     const metrics = await client.state.getPoolFeeMetrics(fees?.publicKey as PublicKey);
     const bn1 = metrics.total.totalTradingBaseFee;
     const bn2 = metrics.total.totalTradingQuoteFee;
@@ -95,6 +114,8 @@ export class CampaignService {
       user: user[0] ?? null,
       percentage: percentage,
       raisedValue: totalFees,
+      poolsData: poolsData || '',
+      bondingCurve: bondingCurve,
     };
   }
 

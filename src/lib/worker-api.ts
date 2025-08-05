@@ -135,12 +135,12 @@ class WorkerApiClient {
   async updateCampaign(
     id: string,
     updateData: {
-      title?: string;
-      description?: string;
-      targetAmount?: number;
-      currentAmount?: number;
-      status?: 'active' | 'completed' | 'cancelled';
-      endDate?: string;
+      name?: string;
+      short_description?: string;
+      long_description?: string;
+      website_url?: string;
+      telegram_handle?: string;
+      campaign_goal?: number;
     }
   ) {
     return this.request(`/api/campaigns/${id}`, {
