@@ -21,14 +21,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = await client.loginWithOAuth2({
       code,
       codeVerifier: verifier as string,
-      redirectUri: `${process.env.NEXT_BASE_URL}/twitter-handler`,
+      redirectUri: `https://www.niceape.app/twitter-handler`,
     });
 
     const user = await loggedClient.v2.me({
       'user.fields': ['profile_image_url'],
     });
     return res.status(200).json({ user, accessToken });
-  } catch (err) {
+  } catch (err: any) {
+    console.log(err?.data);
     return res.status(500).json({ error: (err as Error).message });
   }
 }
