@@ -404,7 +404,7 @@ const CreateCampaignForm = () => {
                         oauthUrl.searchParams.set('response_type', 'code');
                         oauthUrl.searchParams.set(
                           'client_id',
-                          'NEVOM3hRNmRiaU5Cb3BnRm9aWG86MTpjaQ' || ''
+                          'NEVOM3hRNmRiaU5Cb3BnRm9aWG86MTpjaQ'
                         );
                         oauthUrl.searchParams.set(
                           'redirect_uri',
