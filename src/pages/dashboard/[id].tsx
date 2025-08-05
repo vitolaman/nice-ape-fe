@@ -32,7 +32,16 @@ export default function CampaignPage() {
   const [isLoading, setLoading] = useState(true);
   const [formData, setFormData] = useState<Partial<Campaign>>({});
   const [isEditing, setEditing] = useState(false);
-  const currentUserId = localStorage.getItem('userId') || 'anonymous_user';
+  const [currentUserId, setCurrentUserId] = useState<string>('anonymous_user');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedUserId = localStorage.getItem('userId');
+      if (storedUserId) {
+        setCurrentUserId(storedUserId);
+      }
+    }
+  }, []);
 
   const progressPercentage = campaign ? (campaign.raisedValue / campaign.campaignGoal) * 100 : 0;
 
@@ -49,8 +58,9 @@ export default function CampaignPage() {
     try {
       const data: Campaign = (await workerApi.getCampaignById(id as string)) as Campaign;
 
-      // Check if the current user is authorized to view/edit the campaign
-      if (data.userId !== currentUserId) {
+      const storedUserId = localStorage.getItem('userId');
+
+      if (data.userId !== storedUserId) {
         router.push('/dashboard'); // Redirect if userId does not match
         return;
       }
