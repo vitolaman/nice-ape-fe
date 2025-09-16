@@ -81,7 +81,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label className="block text-sm font-medium text-neutral-800">
           Full Description {required && '*'}
           {maxLength && (
             <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
@@ -93,11 +93,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
           <button
             type="button"
             onClick={() => setIsPreviewMode(false)}
-            className={`px-3 py-1 text-xs rounded ${
-              !isPreviewMode
-                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-            }`}
+            className={`px-3 py-1 text-xs rounded ${!isPreviewMode ? 'bg-primary' : 'bg-white text-neutral-500 hover:text-neutral-800'}`}
           >
             Write
           </button>
@@ -105,9 +101,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             type="button"
             onClick={() => setIsPreviewMode(true)}
             className={`px-3 py-1 text-xs rounded ${
-              isPreviewMode
-                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+              isPreviewMode ? 'bg-primary' : 'bg-white text-neutral-500 hover:text-neutral-800'
             }`}
           >
             Preview
@@ -116,15 +110,15 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       </div>
 
       {!isPreviewMode && (
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+        <div className="border border-gray-300 rounded-lg overflow-hidden">
           {/* Toolbar */}
-          <div className="flex flex-wrap gap-1 p-2 bg-gray-50 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600">
+          <div className="flex flex-wrap gap-1 p-2 bg-gray-50 border-b border-gray-300">
             {toolbarButtons.map((button, index) => (
               <button
                 key={index}
                 type="button"
                 onClick={button.action}
-                className="px-2 py-1 text-xs bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded hover:bg-gray-100 dark:hover:bg-gray-500 transition-colors"
+                className="px-2 py-1 text-xs bg-white rounded-sm border-gray-300 hover:bg-primary transition-colors"
                 title={button.shortcut || button.label}
               >
                 {button.label}
@@ -140,17 +134,17 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             rows={rows}
             required={required}
             maxLength={maxLength}
-            className="w-full px-4 py-3 border-0 focus:ring-0 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none"
+            className="w-full px-4 py-3 border-0 focus:ring-0 bg-white text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 resize-none"
             placeholder={placeholder}
           />
         </div>
       )}
 
       {isPreviewMode && (
-        <div className="border border-gray-300 dark:border-gray-600 rounded-lg p-4 bg-white dark:bg-gray-700 min-h-[200px]">
+        <div className="border border-gray-300 rounded-lg p-4 bg-white min-h-[200px]">
           {value ? (
             <div
-              className="prose prose-sm max-w-none dark:prose-invert text-gray-900 dark:text-white"
+              className="prose prose-sm max-w-none dark:prose-invert text-[#0a0a0a]"
               dangerouslySetInnerHTML={{ __html: markdownToHtml(value) }}
             />
           ) : (

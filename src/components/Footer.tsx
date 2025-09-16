@@ -36,10 +36,16 @@ const Footer = () => {
             <Link href="/terms" className="text-white hover:text-primary transition-colors">
               Terms
             </Link>
+            <Link
+              href="/privacy-policy"
+              className="text-white hover:text-primary transition-colors"
+            >
+              Privacy Policy
+            </Link>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-300 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400">
+        <div className="mt-8 pt-8 border-t border-gray-300 text-center text-white">
           <p>&copy; 2025 NiceApe. All rights reserved.</p>
         </div>
       </div>

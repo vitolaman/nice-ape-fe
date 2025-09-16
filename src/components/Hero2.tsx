@@ -45,7 +45,7 @@ const Hero2 = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40"></div>
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10 text-black">
+      <div className="container mx-auto px-4 text-center relative z-10 text-[#0a0a0a]">
         <Badge
           variant="secondary"
           className={`mb-6 backdrop-blur-sm bg-primary/10 text-foreground border-primary/20 hover:scale-105 transition-all duration-300 ${

@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 iconUrls: [process.env.NEXT_PUBLIC_URL + '/favicon.ico'],
               },
               // notificationCallback: WalletNotification,
-              theme: 'dark',
+              theme: 'light',
               lang: 'en',
             }}
           >

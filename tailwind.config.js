@@ -91,6 +91,9 @@ export default {
         background: {
           DEFAULT: '#fff',
         },
+        muted: {
+          DEFAULT: '#262626',
+        },
       },
     },
   },

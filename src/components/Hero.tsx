@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Main Hero Content */}
       <div className="relative max-w-5xl mx-auto px-4 py-16 sm:py-20 text-center z-10">
         {/* Responsive Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#0a0a0a] leading-tight">
           Ape Tokens, <br />
           <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
             Fund people in need.
@@ -73,10 +73,8 @@ const Hero = () => {
                     </svg>
                   </span>
                 </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Set Your Goal</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Define your fundraising target and cause
-                </p>
+                <h4 className="font-semibold text-[#0a0a0a] mb-2">Set Your Goal</h4>
+                <p className="text-sm text-neutral-800">Define your fundraising target and cause</p>
               </div>
 
               {/* Step 2: Create Token */}
@@ -112,10 +110,8 @@ const Hero = () => {
                     </svg>
                   </span>
                 </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Create Token</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Launch your unique charity token
-                </p>
+                <h4 className="font-semibold text-[#0a0a0a] mb-2">Create Token</h4>
+                <p className="text-sm text-neutral-800">Launch your unique charity token</p>
               </div>
 
               {/* Step 3: Receive Donations */}
@@ -136,12 +132,8 @@ const Hero = () => {
                     </svg>
                   </span>
                 </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Receive Donations
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Trading fees flow directly to your cause
-                </p>
+                <h4 className="font-semibold text-[#0a0a0a] mb-2">Receive Donations</h4>
+                <p className="text-sm text-neutral-800">Trading fees flow directly to your cause</p>
               </div>
             </div>
 

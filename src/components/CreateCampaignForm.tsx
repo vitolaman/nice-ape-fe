@@ -180,17 +180,17 @@ const CreateCampaignForm = () => {
       {campaignCreated && !isLoading ? (
         <CampaignCreationSuccess result={campaignResult} />
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <div className="bg-white rounded-2xl shadow-xl p-8 border border-muted/20 transition-colors duration-300">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Campaign Basic Information */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+              <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 pb-2">
                 Campaign Information
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     Campaign Name *
                   </label>
                   <input
@@ -199,13 +199,13 @@ const CreateCampaignForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                     placeholder="e.g., Clean Water Drive"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     Category *
                   </label>
                   <select
@@ -214,7 +214,7 @@ const CreateCampaignForm = () => {
                     onChange={handleChange}
                     required
                     disabled={categoriesLoading || categories.length === 0}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="">
                       {categoriesLoading
@@ -233,7 +233,7 @@ const CreateCampaignForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-800 mb-2">
                   Short Description *
                 </label>
                 <input
@@ -243,7 +243,7 @@ const CreateCampaignForm = () => {
                   onChange={handleChange}
                   required
                   maxLength={100}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                   placeholder="Brief summary or tagline for your campaign"
                 />
               </div>
@@ -258,7 +258,7 @@ const CreateCampaignForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-800 mb-2">
                   Fundraising Goal (USD) *
                 </label>
                 <input
@@ -268,7 +268,7 @@ const CreateCampaignForm = () => {
                   onChange={handleChange}
                   required
                   min="100"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                   placeholder="e.g., 5000"
                 />
               </div>
@@ -276,13 +276,13 @@ const CreateCampaignForm = () => {
 
             {/* Token Information */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+              <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 pb-2">
                 Token Information
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     Token Name *
                   </label>
                   <input
@@ -291,13 +291,13 @@ const CreateCampaignForm = () => {
                     value={formData.token_name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                     placeholder="e.g., Water Token"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     Token Symbol *
                   </label>
                   <input
@@ -307,7 +307,7 @@ const CreateCampaignForm = () => {
                     onChange={handleChange}
                     required
                     maxLength={10}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                     placeholder="e.g., WTR"
                   />
                 </div>
@@ -329,7 +329,7 @@ const CreateCampaignForm = () => {
 
             {/* Media and Wallet Information */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+              <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 pb-2">
                 Media & Financial Information
               </h3>
 
@@ -347,7 +347,7 @@ const CreateCampaignForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-800 mb-2">
                   Charity Wallet Address *
                 </label>
                 <input
@@ -356,7 +356,7 @@ const CreateCampaignForm = () => {
                   value={walletAddress || ''}
                   readOnly
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 cursor-not-allowed transition-colors duration-300"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-neutral-800 cursor-not-allowed transition-colors duration-300"
                   placeholder="Connect wallet to auto-fill"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -367,13 +367,13 @@ const CreateCampaignForm = () => {
 
             {/* Social Links */}
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+              <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 pb-2">
                 Social Links (Optional)
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     Website URL
                   </label>
                   <input
@@ -381,19 +381,19 @@ const CreateCampaignForm = () => {
                     name="website_url"
                     value={formData.website_url}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                     placeholder="https://your-website.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-neutral-800 mb-2">
                     X (Twitter) Handle
                   </label>
 
                   {!isXConnected ? (
                     <Button
-                      className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1 rounded-lg text-lg"
+                      className="w-full bg-primary text-[#0a0a0a] font-medium py-1 rounded-lg text-lg"
                       type="button"
                       onClick={async () => {
                         const codeVerifier = generateCodeVerifier(); // Use PKCE
@@ -427,7 +427,7 @@ const CreateCampaignForm = () => {
                       name="x_handle"
                       value={formData.x_handle}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                       placeholder="@yourusername"
                     />
                   )}
@@ -435,7 +435,7 @@ const CreateCampaignForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-neutral-800 mb-2">
                   Telegram Handle
                 </label>
                 <input
@@ -443,7 +443,7 @@ const CreateCampaignForm = () => {
                   name="telegram_handle"
                   value={formData.telegram_handle}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white text-[#0a0a0a] placeholder-gray-600 transition-colors duration-300"
                   placeholder="@yourtelegram"
                 />
               </div>
@@ -452,7 +452,7 @@ const CreateCampaignForm = () => {
             <div className="pt-6">
               <Button
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg text-lg"
+                className="w-full bg-primary text-[#0a0a0a] font-medium py-3 rounded-lg text-lg"
                 disabled={!publicKey || isLoading || categoriesLoading || categories.length === 0}
               >
                 {isLoading ? (
@@ -487,21 +487,19 @@ const CampaignCreationSuccess = ({ result }: { result: any }) => {
       <div className="bg-green-500/20 p-4 rounded-full inline-flex mb-6">
         <span className="text-4xl">✅</span>
       </div>
-      <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-        Campaign Created Successfully!
-      </h2>
-      <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+      <h2 className="text-3xl font-bold mb-4 text-[#0a0a0a]">Campaign Created Successfully!</h2>
+      <p className="text-neutral-800 mb-8 max-w-lg mx-auto">
         Your donation campaign has been created and is now live! Your token has been minted on the
         blockchain and your campaign is ready to receive donations.
       </p>
 
       {result && (
-        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-8 text-left max-w-md mx-auto">
-          <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">Campaign Details:</h3>
+        <div className="bg-gray-50 rounded-lg p-6 mb-8 text-left max-w-md mx-auto">
+          <h3 className="font-semibold mb-4 text-[#0a0a0a]">Campaign Details:</h3>
           <div className="space-y-2 text-sm">
             {result.tokenMint && (
               <div>
-                <span className="font-medium text-gray-700 dark:text-gray-300">Token Mint: </span>
+                <span className="font-medium text-neutral-800">Token Mint: </span>
                 <a
                   href={`https://solscan.io/token/${result.tokenMint}`}
                   target="_blank"
@@ -514,7 +512,7 @@ const CampaignCreationSuccess = ({ result }: { result: any }) => {
             )}
             {result.transactionSignature && (
               <div>
-                <span className="font-medium text-gray-700 dark:text-gray-300">Transaction: </span>
+                <span className="font-medium text-neutral-800">Transaction: </span>
                 <a
                   href={`https://solscan.io/tx/${result.transactionSignature}`}
                   className="font-mono text-blue-600 dark:text-blue-400 break-all"
@@ -530,13 +528,13 @@ const CampaignCreationSuccess = ({ result }: { result: any }) => {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button
           onClick={() => (window.location.href = `/campaign/${result.id}`)}
-          className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          className="bg-gray-200 text-[#0a0a0a] px-6 py-3 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
         >
           View Campaigns
         </button>
         <button
           onClick={() => window.location.reload()}
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-medium transition-colors"
+          className="bg-primary text-[#0a0a0a] px-6 py-3 rounded-xl font-medium transition-colors"
         >
           Create Another Campaign
         </button>

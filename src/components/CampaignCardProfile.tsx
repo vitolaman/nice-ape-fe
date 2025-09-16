@@ -63,9 +63,7 @@ const CampaignCardProfile: React.FC<CampaignCardProps> = ({ campaign }) => {
           <span className="text-xs font-bold uppercase tracking-wider text-green-600 dark:text-green-400">
             {campaign.category}
           </span>
-          <h4 className="text-lg font-bold text-gray-900 dark:text-white mt-1 mb-2 truncate">
-            {campaign.name}
-          </h4>
+          <h4 className="text-lg font-bold text-[#0a0a0a] mt-1 mb-2 truncate">{campaign.name}</h4>
         </div>
       </div>
     </Link>

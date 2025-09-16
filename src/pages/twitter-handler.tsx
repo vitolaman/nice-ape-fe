@@ -27,9 +27,7 @@ export default function Terms() {
         <div className="py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Redirecting ...
-              </h1>
+              <h1 className="text-4xl font-bold text-[#0a0a0a]">Redirecting ...</h1>
             </div>
           </div>
         </div>

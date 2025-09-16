@@ -135,8 +135,8 @@ export default function CampaignPage() {
         </Head>
         <Page>
           <div className="py-16 px-4 text-center">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Campaign not found</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">
+            <h1 className="text-2xl font-bold text-[#0a0a0a]">Campaign not found</h1>
+            <p className="text-neutral-800 mt-2">
               The campaign you&apos;re looking for doesn&apos;t exist.
             </p>
           </div>
@@ -183,7 +183,7 @@ export default function CampaignPage() {
               {isEditing ? (
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+                    <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 dark:border-gray-600 pb-2">
                       Edit Campaign Information
                     </h3>
 
@@ -197,7 +197,7 @@ export default function CampaignPage() {
                         value={formData.name || ''}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="e.g., Clean Water Drive"
                       />
                     </div>
@@ -212,7 +212,7 @@ export default function CampaignPage() {
                         onChange={handleInputChange}
                         required
                         maxLength={100}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="Brief summary or tagline for your campaign"
                       />
                     </div>
@@ -227,7 +227,7 @@ export default function CampaignPage() {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="Detailed description of your campaign"
                       />
                     </div>
@@ -241,7 +241,7 @@ export default function CampaignPage() {
                         name="websiteUrl"
                         value={formData.websiteUrl || ''}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="https://your-website.com"
                       />
                     </div>
@@ -255,7 +255,7 @@ export default function CampaignPage() {
                         name="telegramHandle"
                         value={formData.telegramHandle || ''}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="@yourtelegram"
                       />
                     </div>
@@ -271,7 +271,7 @@ export default function CampaignPage() {
                         onChange={handleInputChange}
                         required
                         min="100"
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white dark:bg-gray-700 text-[#0a0a0a] placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-300"
                         placeholder="e.g., 5000"
                       />
                     </div>
@@ -295,7 +295,7 @@ export default function CampaignPage() {
                 </form>
               ) : (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] border-b border-gray-200 dark:border-gray-600 pb-2">
                     Campaign Details
                   </h3>
                   <div className="space-y-4 mt-8">
@@ -318,7 +318,7 @@ export default function CampaignPage() {
 
                   <div className="my-6">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      <span className="text-sm font-medium text-neutral-800">
                         Goal: {formatCurrency(campaign.campaignGoal)}
                       </span>
                       <span className="text-sm text-gray-500">
@@ -331,7 +331,7 @@ export default function CampaignPage() {
                         style={{ width: `${Math.min(progressPercentage, 100)}%` }}
                       ></div>
                     </div>
-                    <div className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
+                    <div className="mt-2 text-lg font-semibold text-[#0a0a0a]">
                       {formatCurrency(campaign.raisedValue)} raised
                     </div>
                   </div>
@@ -369,9 +369,7 @@ export default function CampaignPage() {
 
                   <div className="my-6">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                        Bonding Curve
-                      </span>
+                      <span className="text-sm font-medium text-neutral-800">Bonding Curve</span>
                       <span className="text-sm text-gray-500">
                         {Math.round(campaign.bondingCurve)}%
                       </span>

@@ -10,14 +10,15 @@ const ActiveCampaigns2 = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
+            <h3 className="text-3xl font-bold text-[#0a0a0a] mb-4">Active Campaigns</h3>
             <p className="text-lg text-gray-800">
               Support causes you care about by trading their tokens
             </p>
+            <p className="text-lg text-neutral-600 mt-8">Comming Soon</p>
           </div>
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -28,8 +29,8 @@ const ActiveCampaigns2 = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
-            <p className="text-lg text-red-600 dark:text-red-400">Comming Soon</p>
+            <h3 className="text-3xl font-bold text-[#0a0a0a] mb-4">Active Campaigns</h3>
+            <p className="text-lg text-neutral-600">Comming Soon</p>
           </div>
         </div>
       </div>
@@ -43,7 +44,7 @@ const ActiveCampaigns2 = () => {
     <div id="campaigns" className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
+          <h3 className="text-3xl font-bold text-[#0a0a0a] mb-4">Active Campaigns</h3>
           <p className="text-lg text-gray-800">
             Support causes you care about by trading their tokens
           </p>

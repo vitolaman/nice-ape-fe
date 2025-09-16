@@ -10,9 +10,7 @@ const ActiveCampaigns = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Active Campaigns
-            </h3>
+            <h3 className="text-3xl font-bold text-[#0a0a0a]">Active Campaigns</h3>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Support causes you care about by trading their tokens
             </p>
@@ -30,9 +28,7 @@ const ActiveCampaigns = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Active Campaigns
-            </h3>
+            <h3 className="text-3xl font-bold text-[#0a0a0a]">Active Campaigns</h3>
             <p className="text-lg text-red-600 dark:text-red-400">
               Failed to load campaigns. Please try again later.
             </p>
@@ -49,9 +45,7 @@ const ActiveCampaigns = () => {
     <div id="campaigns" className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Active Campaigns
-          </h3>
+          <h3 className="text-3xl font-bold text-[#0a0a0a]">Active Campaigns</h3>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             Support causes you care about by trading their tokens
           </p>

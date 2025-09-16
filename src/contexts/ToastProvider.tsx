@@ -58,7 +58,7 @@ const ToastContainer: React.FC = () => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="animate-slide-in px-6 py-3 rounded-lg shadow-lg border bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white flex items-center gap-3"
+          className="animate-slide-in px-6 py-3 rounded-lg shadow-lg border bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-[#0a0a0a] flex items-center gap-3"
         >
           <span className="text-green-500">
             {toast.type === 'success' ? '✅' : toast.type === 'error' ? '❌' : 'ℹ️'}

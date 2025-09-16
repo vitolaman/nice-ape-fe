@@ -102,8 +102,8 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
           relative border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors
           ${
             isDragActive
-              ? 'border-green-400 bg-green-50 dark:bg-green-900/20'
-              : 'border-gray-300 dark:border-gray-600 hover:border-green-400 dark:hover:border-green-400'
+              ? 'border-primary bg-green-50 dark:bg-green-900/20'
+              : 'border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-primary'
           }
           ${uploading ? 'opacity-50 cursor-not-allowed' : ''}
           ${error ? 'border-red-400' : ''}
@@ -130,14 +130,12 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
                 ×
               </button>
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Click or drag to replace image
-            </p>
+            <p className="text-sm text-neutral-800">Click or drag to replace image</p>
           </div>
         ) : (
           <div className="space-y-2">
             {uploading ? (
-              <div className="text-green-600 dark:text-green-400">
+              <div className="text-primary">
                 <div className="animate-spin w-8 h-8 border-2 border-green-600 border-t-transparent rounded-full mx-auto mb-2"></div>
                 Uploading...
               </div>
@@ -159,10 +157,8 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
                   </svg>
                 </div>
                 <div className="text-sm">
-                  <span className="font-medium text-green-600 dark:text-green-400">
-                    Click to upload
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-400"> or drag and drop</span>
+                  <span className="font-medium text-primary">Click to upload</span>
+                  <span className="text-neutral-800"> or drag and drop</span>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   PNG, JPG, GIF up to {Math.round(maxSize / 1024 / 1024)}MB
