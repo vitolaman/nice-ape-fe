@@ -2,7 +2,7 @@ import React from 'react';
 import CampaignCard from './CampaignCard';
 import { useCampaignsWithJupiter } from '@/hooks/useCampaignsWithJupiter';
 
-const ActiveCampaigns = () => {
+const ActiveCampaigns2 = () => {
   const { data: campaigns, isLoading, error } = useCampaignsWithJupiter();
 
   if (isLoading) {
@@ -10,10 +10,8 @@ const ActiveCampaigns = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Active Campaigns
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
+            <p className="text-lg text-gray-800">
               Support causes you care about by trading their tokens
             </p>
           </div>
@@ -30,12 +28,8 @@ const ActiveCampaigns = () => {
       <div id="campaigns" className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Active Campaigns
-            </h3>
-            <p className="text-lg text-red-600 dark:text-red-400">
-              Failed to load campaigns. Please try again later.
-            </p>
+            <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
+            <p className="text-lg text-red-600 dark:text-red-400">Comming Soon</p>
           </div>
         </div>
       </div>
@@ -49,17 +43,15 @@ const ActiveCampaigns = () => {
     <div id="campaigns" className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Active Campaigns
-          </h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <h3 className="text-3xl font-bold text-black mb-4">Active Campaigns</h3>
+          <p className="text-lg text-gray-800">
             Support causes you care about by trading their tokens
           </p>
         </div>
 
         {activeCampaigns.length === 0 ? (
           <div className="text-center">
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-800">
               No active campaigns found. Be the first to create one!
             </p>
           </div>
@@ -91,7 +83,7 @@ const ActiveCampaigns = () => {
         )}
 
         <div className="text-center mt-12">
-          <p className="text-lg text-gray-600 dark:text-gray-300 font-medium">
+          <p className="text-lg text-gray-800 font-medium">
             Trade with NiceApe, make every swap count! 🦍
           </p>
         </div>
@@ -100,4 +92,4 @@ const ActiveCampaigns = () => {
   );
 };
 
-export default ActiveCampaigns;
+export default ActiveCampaigns2;
