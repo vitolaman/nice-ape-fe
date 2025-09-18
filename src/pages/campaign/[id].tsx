@@ -244,45 +244,49 @@ export default function CampaignPage2() {
 
                 {/* Trading Interface */}
                 <div className="lg:col-span-1 mb-16">
-                  <div className="lg:col-span-1">
-                    <div className="w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-200 transition-colors duration-300">
-                      <h2 className="text-2xl font-bold text-[#0a0a0a] mb-6">Creator</h2>
+                  {campaign?.user?.avatarUrl !== '' &&
+                  campaign?.user?.displayName !== '' &&
+                  campaign?.user?.xHandle !== '' ? (
+                    <div className="lg:col-span-1">
+                      <div className="w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-200 transition-colors duration-300">
+                        <h2 className="text-2xl font-bold text-[#0a0a0a] mb-6">Creator</h2>
 
-                      <div className="flex items-center gap-4 mb-6">
-                        <img
-                          src={campaign?.user?.avatarUrl || 'https://via.placeholder.com/80'}
-                          alt={campaign?.user?.displayName}
-                          className="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-600"
-                        />
-                        <div>
-                          <p className="text-neutral-600 text-sm">
-                            <span className="font-semibold">Name:</span>{' '}
-                            {campaign?.user.displayName}
-                          </p>
-                          {campaign?.user?.xHandle && (
+                        <div className="flex items-center gap-4 mb-6">
+                          <img
+                            src={campaign?.user?.avatarUrl || 'https://via.placeholder.com/80'}
+                            alt={campaign?.user?.displayName}
+                            className="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-600"
+                          />
+                          <div>
                             <p className="text-neutral-600 text-sm">
-                              <span className="font-semibold">Twitter:</span>{' '}
-                              <a
-                                href={`https://x.com/${campaign?.user.xHandle}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 dark:text-blue-400 hover:underline"
-                              >
-                                {campaign?.user.xHandle}
-                              </a>
+                              <span className="font-semibold">Name:</span>{' '}
+                              {campaign?.user.displayName}
                             </p>
-                          )}
+                            {campaign?.user?.xHandle && (
+                              <p className="text-neutral-600 text-sm">
+                                <span className="font-semibold">Twitter:</span>{' '}
+                                <a
+                                  href={`https://x.com/${campaign?.user.xHandle}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                                >
+                                  {campaign?.user.xHandle}
+                                </a>
+                              </p>
+                            )}
+                          </div>
                         </div>
-                      </div>
 
-                      {campaign?.user.bio && (
-                        <div className="text-neutral-600 text-sm">
-                          <p className="font-semibold mb-1">About:</p>
-                          <p className="leading-relaxed">{campaign?.user.bio}</p>
-                        </div>
-                      )}
+                        {campaign?.user.bio && (
+                          <div className="text-neutral-600 text-sm">
+                            <p className="font-semibold mb-1">About:</p>
+                            <p className="leading-relaxed">{campaign?.user.bio}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
 
                   <TradingInterface
                     campaignToken={campaign?.tokenMint}

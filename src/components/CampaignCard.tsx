@@ -46,14 +46,14 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
 
   return (
     <Link href={`/campaign/${campaign.id}`} className="block">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
         {/* Campaign Image */}
         <div className="relative h-48">
           <img
             src={imageSrc}
             alt={campaign.name}
             onError={handleImageError}
-            className="w-full h-full object-cover bg-gray-100 dark:bg-gray-700"
+            className="w-full h-full object-cover bg-gray-100"
           />
           <div className="absolute top-3 right-3">
             <span className="bg-black/50 backdrop-blur-sm text-white font-semibold px-3 py-1 rounded-full text-xs shadow-lg">
@@ -64,39 +64,39 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
 
         {/* The rest of the component remains the same */}
         <div className="p-5">
-          <span className="text-xs font-bold uppercase tracking-wider text-green-600 dark:text-green-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary">
             {campaign.category}
           </span>
           <h4 className="text-lg font-bold text-[#0a0a0a] mt-1 mb-2 truncate">{campaign.name}</h4>
 
           {/* Progress Section */}
           <div className="mb-4">
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
               <div
-                className="bg-gradient-to-r from-green-500 to-blue-500 h-2.5 rounded-full transition-all duration-500 ease-out"
+                className="bg-primary h-2.5 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${Math.min(progressPercentage, 100)}%` }}
               ></div>
             </div>
             <div className="flex justify-between items-center mt-2">
-              <span className="text-sm font-bold text-green-600 dark:text-green-400">
+              <span className="text-sm font-bold text-primary">
                 ${formatReadableNumber(campaign.raised, { format: 'compact' })}
                 <span className="text-xs text-gray-500 dark:text-gray-400 font-medium ml-1">
                   of ${formatReadableNumber(campaign.goal, { format: 'compact' })}
                 </span>
               </span>
-              <span className="text-sm font-bold text-gray-800 dark:text-gray-200">
+              <span className="text-sm font-bold text-gray-800">
                 {Math.round(progressPercentage)}%
               </span>
             </div>
           </div>
 
           {/* Optimized Stats Section with Icons */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4 grid grid-cols-2 gap-4 text-sm">
+          <div className="border-t border-gray-200 pt-4 grid grid-cols-2 gap-4 text-sm">
             <div className="flex items-center gap-2">
               <ChartBarIcon className="w-5 h-5 text-gray-400" />
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Volume (24h)</p>
-                <p className="font-bold text-gray-800 dark:text-gray-200">
+                <p className="text-xs text-gray-500">Volume (24h)</p>
+                <p className="font-bold text-gray-800">
                   ${formatReadableNumber(campaign.volume24h, { format: 'compact' })}
                 </p>
               </div>
@@ -104,8 +104,8 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign }) => {
             <div className="flex items-center gap-2">
               <GlobeIcon className="w-5 h-5 text-gray-400" />
               <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Market Cap</p>
-                <p className="font-bold text-gray-800 dark:text-gray-200">
+                <p className="text-xs text-gray-500">Market Cap</p>
+                <p className="font-bold text-gray-800">
                   ${formatReadableNumber(campaign.mcap, { format: 'compact', decimals: 2 })}
                 </p>
               </div>
