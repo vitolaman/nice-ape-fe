@@ -75,7 +75,7 @@ export const Header = () => {
           <div className="flex flex-col">
             <span className="text-xl font-bold text-primary leading-tight">NiceApe</span>
             <span className="text-xs text-green-600 dark:text-green-400 font-medium uppercase tracking-wide">
-              Trade to Donate
+              Ape to Donate
             </span>
           </div>
         </Link>
