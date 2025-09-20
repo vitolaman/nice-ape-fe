@@ -12,6 +12,7 @@ import {
 import { fetchCategories, type Category } from '@/lib/services';
 import { toast } from 'sonner';
 import { generateCodeChallenge, generateCodeVerifier } from '@/lib/utils';
+import { workerApi } from '@/lib/worker-api';
 
 const CreateCampaignForm = () => {
   const { publicKey, signTransaction } = useWallet();
@@ -63,7 +64,6 @@ const CreateCampaignForm = () => {
         const categories = await fetchCategories();
         setCategories(categories);
       } catch (error) {
-        console.error('Error fetching categories:', error);
         toast.error('Failed to load categories.');
         setCategories([]); // Leave categories empty if API fails
       } finally {
@@ -98,15 +98,20 @@ const CreateCampaignForm = () => {
         });
 
         if (!res.ok) throw new Error('Twitter login failed');
-        console.log(res);
         const data: any = await res.json();
-        console.log('Twitter User:', data.user.data.username);
 
         // Optional: Set formData.x_handle = data.user.username
         setFormData((prev) => ({
           ...prev,
           x_handle: `@${data.user.data.username}`,
         }));
+
+        const userId = localStorage.getItem('userId') || '';
+
+        await workerApi.updateUser(userId, {
+          xHandle: `@${data.user.data.username}`,
+          avatarUrl: `${data.user.data.profile_image_url}`,
+        });
 
         setIsXConnected(true);
         toast.success(`Connected to @${data.user.data.username}`);
@@ -483,9 +488,9 @@ const CreateCampaignForm = () => {
 
 const CampaignCreationSuccess = ({ result }: { result: any }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700 transition-colors duration-300 text-center">
+    <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 transition-colors duration-300 text-center">
       <div className="bg-green-500/20 p-4 rounded-full inline-flex mb-6">
-        <span className="text-4xl">✅</span>
+        <span className="text-4xl text-green-800">✔</span>
       </div>
       <h2 className="text-3xl font-bold mb-4 text-[#0a0a0a]">Campaign Created Successfully!</h2>
       <p className="text-neutral-800 mb-8 max-w-lg mx-auto">
@@ -527,10 +532,10 @@ const CampaignCreationSuccess = ({ result }: { result: any }) => {
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button
-          onClick={() => (window.location.href = `/campaign/${result.id}`)}
+          onClick={() => (window.location.href = `/campaign/${result?.formDataWithUrls?.id}`)}
           className="bg-gray-200 text-[#0a0a0a] px-6 py-3 rounded-xl font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
         >
-          View Campaigns
+          View Campaign
         </button>
         <button
           onClick={() => window.location.reload()}

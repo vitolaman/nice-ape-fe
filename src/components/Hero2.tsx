@@ -120,7 +120,7 @@ const Hero2 = () => {
           </div>
           <div className="flex items-center space-x-2 text-sm text-muted-foreground">
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-1000"></div>
-            <span>Verified Impact</span>
+            <span>Share Kindness</span>
           </div>
         </div>
       </div>

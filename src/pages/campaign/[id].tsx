@@ -244,9 +244,12 @@ export default function CampaignPage2() {
 
                 {/* Trading Interface */}
                 <div className="lg:col-span-1 mb-16">
-                  {campaign?.user?.avatarUrl !== '' &&
-                  campaign?.user?.displayName !== '' &&
-                  campaign?.user?.xHandle !== '' ? (
+                  {campaign?.user?.avatarUrl !== null &&
+                  campaign?.user?.avatarUrl !== undefined &&
+                  campaign?.user?.displayName !== null &&
+                  campaign?.user?.displayName !== undefined &&
+                  campaign?.user?.xHandle !== null &&
+                  campaign?.user?.xHandle !== undefined ? (
                     <div className="lg:col-span-1">
                       <div className="w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-200 transition-colors duration-300">
                         <h2 className="text-2xl font-bold text-[#0a0a0a] mb-6">Creator</h2>
@@ -260,7 +263,7 @@ export default function CampaignPage2() {
                           <div>
                             <p className="text-neutral-600 text-sm">
                               <span className="font-semibold">Name:</span>{' '}
-                              {campaign?.user.displayName}
+                              {campaign?.user?.displayName}
                             </p>
                             {campaign?.user?.xHandle && (
                               <p className="text-neutral-600 text-sm">
@@ -278,7 +281,7 @@ export default function CampaignPage2() {
                           </div>
                         </div>
 
-                        {campaign?.user.bio && (
+                        {campaign?.user?.bio && (
                           <div className="text-neutral-600 text-sm">
                             <p className="font-semibold mb-1">About:</p>
                             <p className="leading-relaxed">{campaign?.user.bio}</p>

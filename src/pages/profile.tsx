@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useWallet } from '@jup-ag/wallet-adapter';
-import Page from '@/components/ui/Page/Page';
+import Page2 from '@/components/ui/Page/Page2';
 import Head from 'next/head';
 import { generateCodeChallenge, generateCodeVerifier, shortenAddress } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeProvider';
@@ -44,7 +44,7 @@ export default function Profile() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
 
   const [userProfile, setUserProfile] = useState({
-    displayName: '',
+    displayName: 'Your Name',
     xHandle: '',
     bio: '',
     avatar: '🦍',
@@ -179,14 +179,14 @@ export default function Profile() {
       <Head>
         <title>Profile - NiceApe</title>
       </Head>
-      <Page>
-        <div className={`max-w-4xl mx-auto p-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <Page2>
+        <div className={`max-w-4xl w-2/3 mx-auto p-6 text-[#0a0a0a]`}>
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => window.history.back()}
-                className={`p-2 rounded-lg ${isDarkMode ? 'text-blue-400 hover:bg-gray-800' : 'text-blue-600 hover:bg-gray-100'}`}
+                className={`p-2 rounded-lg text-blue-400`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -201,21 +201,13 @@ export default function Profile() {
             </div>
             <button
               onClick={isEditing ? handleSaveProfile : () => setIsEditing(true)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                isEditing
-                  ? 'bg-green-600 hover:bg-green-700 text-white'
-                  : isDarkMode
-                    ? 'text-blue-400 hover:bg-gray-800'
-                    : 'text-blue-600 hover:bg-gray-100'
-              }`}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors bg-primary text-[#0a0a0a]`}
             >
               {isEditing ? 'Save' : 'Edit'}
             </button>
           </div>
           {/* Profile Section */}
-          <div
-            className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-          >
+          <div className={`rounded-xl p-6 mb-6 bg-white drop-shadow-xl border shadow-sm`}>
             <div className="text-center mb-6">
               <div className="text-6xl mb-4">{userProfile.avatar}</div>
               {isEditing ? (
@@ -232,11 +224,7 @@ export default function Profile() {
                       onChange={(e) =>
                         setUserProfile({ ...userProfile, displayName: e.target.value })
                       }
-                      className={`w-full px-3 py-2 rounded-lg border ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-white'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
+                      className={`w-full px-3 py-2 rounded-lg border bg-white border-gray-300 text-gray-900`}
                     />
                   </div>
                   <div>
@@ -246,7 +234,7 @@ export default function Profile() {
                       X Handle
                     </label>
                     <Button
-                      className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-1 rounded-lg text-lg"
+                      className="w-full bg-primary text-[#0a0a0a] font-medium py-1 rounded-lg text-lg"
                       type="button"
                       onClick={async () => {
                         const codeVerifier = generateCodeVerifier(); // Use PKCE
@@ -284,11 +272,7 @@ export default function Profile() {
                       value={userProfile.bio}
                       onChange={(e) => setUserProfile({ ...userProfile, bio: e.target.value })}
                       rows={3}
-                      className={`w-full px-3 py-2 rounded-lg border resize-none ${
-                        isDarkMode
-                          ? 'bg-gray-700 border-gray-600 text-white'
-                          : 'bg-white border-gray-300 text-gray-900'
-                      }`}
+                      className={`w-full px-3 py-2 rounded-lg border resize-none bg-white border-gray-300 text-gray-900`}
                     />
                   </div>
                 </div>
@@ -305,22 +289,19 @@ export default function Profile() {
           </div>
           {/* Connected Wallet */}
           {address && (
-            <div
-              className={`rounded-xl p-6 mb-6 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-sm`}
-            >
+            <div className={`rounded-xl p-6 mb-6 bg-white drop-shadow-xl shadow-sm`}>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-4 h-4 bg-green-500 rounded-full"></div>
                 <h3 className="text-xl font-bold">Connected Wallet</h3>
               </div>
 
               <div
-                className={`flex items-center justify-between p-3 rounded-lg mb-4 ${
-                  isDarkMode ? 'bg-gray-700' : 'bg-gray-50'
+                className={`flex items-center justify-between p-3 rounded-lg mb-4 bg-slate-50
                 }`}
               >
-                <span className="font-mono">{shortenAddress(address)}</span>
+                <span className="font-mono">{address}</span>
                 <div className="flex gap-2">
-                  <button
+                  {/* <button
                     className={`p-2 rounded ${isDarkMode ? 'hover:bg-gray-600' : 'hover:bg-gray-200'}`}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -343,13 +324,13 @@ export default function Profile() {
                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                       />
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
           )}
         </div>
-      </Page>
+      </Page2>
     </>
   );
 }
