@@ -59,7 +59,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className="w-full px-4 py-4 bg-white dark:bg-gray-800 border-b dark:border-gray-700 sticky top-0 z-50 transition-colors duration-300">
+    <header className="w-full px-4 py-4 bg-white border-b dark:border-gray-700 sticky top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export const Header = () => {
               </button>
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
                   <Link
                     href="/dashboard"
                     className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"

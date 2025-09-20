@@ -102,42 +102,42 @@ export const Header = () => {
             </button>
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border dark:border-gray-700 py-2 z-50">
+              <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border dark:border-gray-300 py-2 z-50">
                 <Link
                   href="/profile"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="block px-4 py-2 text-[#0a0a0a] hover:bg-neutral-100 transition-colors"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Profile
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="block px-4 py-2 text-[#0a0a0a] hover:bg-neutral-100 transition-colors"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/help"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="block px-4 py-2 text-[#0a0a0a] hover:bg-neutral-100 transition-colors"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Help
                 </Link>
                 <Link
                   href="/terms"
-                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="block px-4 py-2 text-[#0a0a0a] hover:bg-neutral-100 transition-colors"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Terms
                 </Link>
-                <div className="border-t dark:border-gray-700 my-1"></div>
+                <div className="border-t dark:border-gray-300 my-1"></div>
                 <button
                   onClick={() => {
                     disconnect();
                     setIsDropdownOpen(false);
                   }}
-                  className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="block w-full text-left px-4 py-2 text-red-600 hover:text-white hover:bg-red-600 transition-colors"
                 >
                   Disconnect Wallet
                 </button>
