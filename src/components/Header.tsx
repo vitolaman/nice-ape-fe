@@ -63,7 +63,11 @@ export const Header = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3">
-          <img src="/logo.jpg" alt="NiceApe Logo" className="w-10 h-10 rounded-full object-cover" />
+          <img
+            src="/logo_niceape.png"
+            alt="NiceApe Logo"
+            className="w-10 h-10 rounded-full object-cover"
+          />
           <div className="flex flex-col">
             <span className="text-xl font-bold text-[#0a0a0a] leading-tight">NiceApe</span>
             <span className="text-xs text-green-600 dark:text-green-400 font-medium uppercase tracking-wide">

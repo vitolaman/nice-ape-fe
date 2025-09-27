@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="mb-4 md:mb-0">
             <div className="flex items-center gap-2">
               <img
-                src="/logo.jpg"
+                src="/logo_niceape.png"
                 alt="NiceApe Logo"
                 className="w-6 h-6 rounded-full object-cover"
               />

@@ -43,7 +43,7 @@ export default function Custom404() {
             {/* Logo */}
             <div className="flex justify-center mb-8">
               <img
-                src="/logo.jpg"
+                src="/logo_niceape.png"
                 alt="NiceApe Logo"
                 className="w-24 h-24 rounded-full object-cover shadow-lg"
               />
